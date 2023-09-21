@@ -6,6 +6,10 @@ const app = express();
 const PORT = 4000;
 
 const userRoute = require("./Routes/userRoutes");
+const giftCardRoute = require("./Routes/giftCardRoutes");
+const orderRoute = require("./Routes/orderRoutes");
+const reportsRoute = require("./Routes/reportsRoutes");
+const stockRoute = require("./Routes/stockRoutes");
 
 app.use(express.json());
 app.use(cors());
@@ -13,6 +17,10 @@ app.use(cors());
 connectDB();
 
 app.use("/auth", userRoute);
+app.use("/giftcard", giftCardRoute);
+app.use("/order", orderRoute);
+app.use("/report", reportsRoute);
+app.use("/stock", stockRoute);
 
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);

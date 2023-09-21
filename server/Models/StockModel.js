@@ -5,7 +5,7 @@ const StockSchema = new Schema(
 	{
 		id: { type: Number },
 		sended: { type: Date },
-		gift_type: { type: String },
+		gift_type: { type: mongoose.Schema.Types.ObjectId, ref: "GiftCard" },
 		total_sum: { type: Number },
 		gift_discount: { type: Number },
 		notes: { type: String },

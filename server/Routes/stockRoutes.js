@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const ordersBLL = require("../BLL/ordersBLL");
+const stockBLL = require("../BLL/stocksBLL");
 
 router.get("/", async (req, res) => {
 	try {
-		const orders = await ordersBLL.getAllOrders();
-		res.status(200).send(orders);
+		const stocks = await stockBLL.getAllStocks();
+		res.status(200).send(stocks);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -14,18 +14,17 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const order = await ordersBLL.getOrderById(id);
-		res.status(200).send(order);
+		const stock = await stockBLL.getStockById(id);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
 });
 
-router.post("/addOrder", async (req, res) => {
+router.post("/addStock", async (req, res) => {
 	try {
-		const { order } = req.body;
-		const newOrder = await ordersBLL.addNewOrder(order);
-		res.status(200).send(newOrder);
+		const { stock } = req.body;
+		const newStock = await stockBLL.addNewStock(stock);
+		res.status(200).send(newStock);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -34,9 +33,9 @@ router.post("/addOrder", async (req, res) => {
 router.post("/update/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const { order } = req.body;
-		const updatedOrder = await ordersBLL.updatedOrder(id, order);
-		res.status(200).send(updatedOrder);
+		const { stock } = req.body;
+		const updateStock = await stockBLL.updatedStock(id, stock);
+		res.status(200).send(updateStock);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -45,8 +44,8 @@ router.post("/update/:id", async (req, res) => {
 router.post("/delete/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const deletedOrder = await ordersBLL.deleteOrder(id);
-		res.status(200).send(deletedOrder);
+		const deleteStock = await stockBLL.deleteStock(id);
+		res.status(200).send(deleteStock);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}

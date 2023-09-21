@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ReportBalanceSchema = new Schema(
 	{
-		r_date: { type: Date },
+		r_date: { type: Date, default: Date.now },
 		total: { type: Number },
 		actual_cost: { type: Number },
 		sent_times: { type: Number },

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const ordersBLL = require("../BLL/ordersBLL");
+const giftCardBLL = require("../BLL/giftCardsBLL");
 
 router.get("/", async (req, res) => {
 	try {
-		const orders = await ordersBLL.getAllOrders();
-		res.status(200).send(orders);
+		const giftCards = await giftCardBLL.getAllGiftCards();
+		res.status(200).send(giftCards);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -14,18 +14,18 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const order = await ordersBLL.getOrderById(id);
-		res.status(200).send(order);
+		const giftCard = await giftCardBLL.getGiftCardById(id);
+		res.status(200).send(giftCard);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
 });
 
-router.post("/addOrder", async (req, res) => {
+router.post("/addGiftCard", async (req, res) => {
 	try {
-		const { order } = req.body;
-		const newOrder = await ordersBLL.addNewOrder(order);
-		res.status(200).send(newOrder);
+		const { giftCard } = req.body;
+		const newGiftCard = await giftCardBLL.addGiftCard(giftCard);
+		res.status(200).send(newGiftCard);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -34,9 +34,9 @@ router.post("/addOrder", async (req, res) => {
 router.post("/update/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const { order } = req.body;
-		const updatedOrder = await ordersBLL.updatedOrder(id, order);
-		res.status(200).send(updatedOrder);
+		const { giftCard } = req.body;
+		const updatedGiftCard = await giftCardBLL.updateGiftCard(id, giftCard);
+		res.status(200).send(updatedGiftCard);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -45,8 +45,8 @@ router.post("/update/:id", async (req, res) => {
 router.post("/delete/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const deletedOrder = await ordersBLL.deleteOrder(id);
-		res.status(200).send(deletedOrder);
+		const deleteGiftCard = await giftCardBLL.deleteGiftCard(id);
+		res.status(200).send(deleteGiftCard);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}

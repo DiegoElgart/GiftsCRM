@@ -1,33 +1,34 @@
-const Order = require("../Models/OdersModel");
+const ordersDAL = require("../DL/ordersDAL");
 
 const getAllOrders = async () => {
-	const orders = await Order.find();
+	const orders = await ordersDAL.getAllOrders();
 	return orders;
 };
 
 const getOrderById = async id => {
-	const order = await Order.find({ id: id });
+	const order = await ordersDAL.getOrderById(id);
 	return order;
 };
 
 const addNewOrder = async order => {
-	const newOrder = await Order.create(order);
+	const newOrder = await ordersDAL.addNewOrder(order);
 	return newOrder;
 };
 
-const updateOrder = async (id, updatedOrder) => {
-	const order = await Order.updateOne({ id: id }, updatedOrder);
+const updatedOrder = async (id, orderToUpdate) => {
+	const order = await ordersDAL.updateOrder(id, orderToUpdate);
 	return order;
 };
 
 const deleteOrder = async id => {
-	const order = await Order.deleteOne({ id: id });
+	const order = await ordersDAL.deleteOrder(id);
 	return order;
 };
+
 module.exports = {
 	getAllOrders,
 	getOrderById,
 	addNewOrder,
-	updateOrder,
+	updatedOrder,
 	deleteOrder,
 };
