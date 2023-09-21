@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const GiftCardSchema = new Schema(
 	{
+		// Make type UNIQUE
 		type: { type: String },
 		discount_list: [{ discount: { type: Number }, createdAt: { type: Date, default: Date.now }, endAt: { type: Date } }],
 	},
