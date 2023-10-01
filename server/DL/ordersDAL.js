@@ -6,7 +6,7 @@ const getAllOrders = async () => {
 };
 
 const getOrderById = async id => {
-	const order = await Order.find({ id: id });
+	const order = await Order.find({ _id: id });
 	return order;
 };
 
@@ -16,12 +16,12 @@ const addNewOrder = async order => {
 };
 
 const updateOrder = async (id, orderToUpdate) => {
-	const order = await Order.findOneAndUpdate({ id: id }, orderToUpdate);
+	const order = await Order.findOneAndUpdate({ _id: id }, orderToUpdate);
 	return order;
 };
 
 const deleteOrder = async id => {
-	const order = await Order.findOneAndDelete({ id: id });
+	const order = await Order.findOneAndDelete({ _id: id });
 	return order;
 };
 module.exports = {

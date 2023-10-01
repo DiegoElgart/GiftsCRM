@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const ordersBLL = require("../BLL/ordersBLL");
+const statusBLL = require("../BLL/statusBLL");
 
 router.get("/", async (req, res) => {
 	try {
-		const orders = await ordersBLL.getAllOrders();
-		res.status(200).send(orders);
+		const statuses = await statusBLL.getAllStatus();
+		res.status(200).send(statuses);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -14,18 +14,18 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const order = await ordersBLL.getOrderById(id);
-		res.status(200).send(order);
+		const status = await statusBLL.getStatusById(id);
+		res.status(200).send(status);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
 });
 
-router.post("/addOrder", async (req, res) => {
+router.post("/addStatus", async (req, res) => {
 	try {
-		const order = req.body;
-		const newOrder = await ordersBLL.addNewOrder(order);
-		res.status(200).send(newOrder);
+		const status = req.body;
+		const newStatus = await statusBLL.addStatus(status);
+		res.status(200).send(newStatus);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -34,9 +34,9 @@ router.post("/addOrder", async (req, res) => {
 router.post("/update/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const { order } = req.body;
-		const updatedOrder = await ordersBLL.updatedOrder(id, order);
-		res.status(200).send(updatedOrder);
+		const { status } = req.body;
+		const updateStatus = await statusBLL.updateStatus(id, status);
+		res.status(200).send(updateStatus);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}
@@ -45,8 +45,8 @@ router.post("/update/:id", async (req, res) => {
 router.post("/delete/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const deletedOrder = await ordersBLL.deleteOrder(id);
-		res.status(200).send(deletedOrder);
+		const deleteStatus = await statusBLL.deleteStatus(id);
+		res.status(200).send(deleteStatus);
 	} catch (err) {
 		res.status(500).send({ message: err.message });
 	}

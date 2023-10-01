@@ -17,14 +17,13 @@ const OrderSchema = new Schema(
 		user_address_notes: { type: String },
 		user_zipcode: { type: String },
 		user_birthday: { type: Date },
-		gift_type: { type: String },
 		// randomID: { type: String },
 		// serialID: { type: String },
 		sum_gifts: { type: Number },
 		identified: { type: Boolean },
 		is_minor: { type: Boolean },
 		notes: { type: String },
-		status: { type: String },
+		status: { type: Schema.Types.ObjectId, ref: "Status" },
 		//status_note: { type: String },
 		last_sended: { type: Date },
 		last_updated: { type: Date },
@@ -46,6 +45,7 @@ const OrderSchema = new Schema(
 		Identity_Confirm_Last_Name: { type: String },
 		site_lang: { type: String },
 		giftCardType: { type: Schema.Types.ObjectId, ref: "GiftCard" },
+		picture: { type: String },
 	},
 	{ versionKey: false }
 );
